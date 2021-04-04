@@ -2,7 +2,7 @@
 # Bash script to initialise a generic ESP32 system with network and webrepl on bootloader.
 
 echo Starting...
-echo Nev\'s ESP32 initialisation script. v1.0.
+echo Nev\'s ESP32 initialisation script. v0.1
 echo This script will erase your system\'s flash and upload new firmware and bootloader.
 
 read -p "Do you want to proceed? (y/n) " -n 1 -r
@@ -12,12 +12,12 @@ then
 
 
 echo Installing PySerial...
-pip3 install pyserial
+pip install pyserial
 echo -en "\e[38;5;2m ESPTOOL installed \e[m \n"
 
 
 echo Installing ESPTool...
-pip3 install esptool
+pip install esptool
 echo -en "\e[38;5;2m ESPTOOL installed \e[m \n"
 
 
@@ -34,7 +34,7 @@ esptool.py --chip esp32 --port /dev/ttyUSB0 write_flash -z 0x1000 esp32-idf4-202
 echo -en "\e[38;5;2m Firmware flashed! \e[m \n"
 
 echo Installing ampy
-pip3 install --user adafruit-ampy
+pip install --user adafruit-ampy
 echo -en "\e[38;5;2m ampy installed \e[m \n"
 
 echo Initialising network parameters
@@ -51,6 +51,8 @@ ampy put ./ESP32/boot.py
 echo -en "\e[38;5;2m boot.py installed \e[m \n"
 
 fi
+
+rm ./esp32-idf4-20210202-v1.14.bin
 
 #Set .ampy config here
 echo Quitting...
